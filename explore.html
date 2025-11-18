@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>LitMate — Explore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
+            rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="light" data-page="explore">
+<div class="page">
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-mark">LM</div>
+            <div>
+                <div class="logo-text-main">LitMate</div>
+                <div class="logo-text-sub">online library companion</div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <nav class="top-nav">
+                <a href="index.html" class="top-nav__link">← Back to home</a>
+            </nav>
+
+            <button class="theme-toggle" type="button" id="themeToggle">
+                <span id="themeIcon">🌙</span>
+                <span id="themeLabel">Dark</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="explore-main">
+        <section class="explore-header">
+            <h1 class="explore-title" id="exploreTitle">Explore</h1>
+            <p class="explore-subtitle" id="exploreSubtitle">
+                Extended list of books.
+            </p>
+
+            <div class="explore-tabs">
+                <button class="explore-tab" data-type="popular">Popular</button>
+                <button class="explore-tab" data-type="recent">Recent</button>
+                <button class="explore-tab" data-type="audio">Audiobooks</button>
+                <button class="explore-tab" data-type="genres">Genres mix</button>
+            </div>
+
+            <div class="explore-controls">
+                <label class="explore-control">
+                    Sort by
+                    <select id="exploreSort">
+                        <option value="title">Title (A–Z)</option>
+                        <option value="pages">Pages (desc)</option>
+                    </select>
+                </label>
+                <label class="explore-control explore-checkbox">
+                    <input type="checkbox" id="exploreLong" />
+                    long reads (300+ pages)
+                </label>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title" id="exploreSectionTitle">All books</h2>
+                    <p class="section-sub" id="exploreStatus">Loading...</p>
+                </div>
+            </div>
+
+            <div class="books-grid" id="exploreGrid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>© 2025 LitMate</span>
+        <span>Explore page</span>
+    </footer>
+</div>
+
+<div class="modal-overlay" id="bookModalOverlay">
+    <div class="modal" id="bookModal">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-body">
+            <div class="modal-cover-wrap">
+                <img id="modalCover" alt="Book cover" />
+            </div>
+            <div class="modal-content">
+                <h2 class="modal-title" id="modalTitle">Title</h2>
+                <p class="modal-authors" id="modalAuthors">Author</p>
+                <p class="modal-desc" id="modalDescription">
+                    Description
+                </p>
+                <button class="btn btn-primary" id="modalReadBtn">
+                    Read / listen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

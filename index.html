@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>LitMate — Online Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
+            rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="light" data-page="home">
+<div class="page" id="top">
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-mark">LM</div>
+            <div>
+                <div class="logo-text-main">LitMate</div>
+                <div class="logo-text-sub">online library companion</div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <nav class="top-nav">
+                <button class="top-nav__link js-scroll" data-target="top">Home</button>
+                <button class="top-nav__link js-scroll" data-target="section-popular">Popular</button>
+                <button class="top-nav__link js-scroll" data-target="section-recent">Recent</button>
+                <button class="top-nav__link js-scroll" data-target="section-genres">Genres</button>
+                <button class="top-nav__link js-scroll" data-target="section-audio">Audiobooks</button>
+            </nav>
+
+            <button class="theme-toggle" type="button" id="themeToggle">
+                <span id="themeIcon">🌙</span>
+                <span id="themeLabel">Dark</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="search">
+        <div class="search-main">
+            <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search by title, author or topic..."
+            />
+            <button id="searchBtn" class="btn btn-primary search-btn">
+                Search
+            </button>
+        </div>
+
+        <p class="search-hint">
+            Quick ideas:
+            <button class="search-chip" data-query="fantasy">fantasy</button>
+            <button class="search-chip" data-query="romance">romance</button>
+            <button class="search-chip" data-query="self help">self help</button>
+        </p>
+    </section>
+
+    <main class="main">
+        <div class="main-left">
+
+            <section class="section" id="section-recent">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Recent</h2>
+                        <p class="section-sub">Newest fiction books.</p>
+                    </div>
+                    <div class="section-controls">
+                        <button class="section-arrow" id="recentPrev" type="button">‹</button>
+                        <button class="section-arrow" id="recentNext" type="button">›</button>
+                        <a class="section-link" href="explore.html?type=recent">View all</a>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="recentRow"></div>
+            </section>
+
+
+            <section class="section" id="section-search">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Search results</h2>
+                        <p class="section-sub" id="searchStatus">
+                            Use search above to find books.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="searchResults"></div>
+            </section>
+
+            <!-- POPULAR -->
+            <section class="section" id="section-popular">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Popular</h2>
+                        <p class="section-sub">Based on “bestsellers fiction” search.</p>
+                    </div>
+                    <div class="section-controls">
+                        <button class="section-arrow" id="popularPrev" type="button">‹</button>
+                        <button class="section-arrow" id="popularNext" type="button">›</button>
+                        <a class="section-link" href="explore.html?type=popular">View all</a>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="popularRow"></div>
+            </section>
+
+            <!-- GENRES -->
+            <section class="section" id="section-genres">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Genres</h2>
+                        <p class="section-sub">Different moods and categories.</p>
+                    </div>
+                    <div class="section-controls">
+                        <a class="section-link" href="explore.html?type=genres">Browse all</a>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="genresRow"></div>
+            </section>
+
+            <!-- AUDIOBOOKS -->
+            <section class="section" id="section-audio">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Audiobooks</h2>
+                        <p class="section-sub">For listening on the go.</p>
+                    </div>
+                    <div class="section-controls">
+                        <button class="section-arrow" id="audioPrev" type="button">‹</button>
+                        <button class="section-arrow" id="audioNext" type="button">›</button>
+                        <a class="section-link" href="explore.html?type=audio">View all</a>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="audioRow"></div>
+            </section>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <aside class="main-right">
+            <section class="side-card">
+                <div class="side-header">
+                    <div>
+                        <h3 class="side-title">Favorites</h3>
+                        <p class="side-sub">Your saved books</p>
+                    </div>
+                </div>
+
+                <div class="side-items" id="favoritesList"></div>
+            </section>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <span>© 2025 LitMate</span>
+        <span>Ur best book buddy</span>
+    </footer>
+</div>
+
+
+
+<div class="modal-overlay" id="bookModalOverlay">
+    <div class="modal" id="bookModal">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-body">
+            <div class="modal-cover-wrap">
+                <img id="modalCover" alt="Book cover" />
+            </div>
+            <div class="modal-content">
+                <h2 class="modal-title" id="modalTitle">Title</h2>
+                <p class="modal-authors" id="modalAuthors">Author</p>
+                <p class="modal-desc" id="modalDescription">
+                    Description
+                </p>
+                <button class="btn btn-primary" id="modalReadBtn">
+                    Read / listen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
